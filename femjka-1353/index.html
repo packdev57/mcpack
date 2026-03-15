@@ -127,7 +127,7 @@
     <p class="subtitle">Minecraft 資源包商店</p>
 
     <div class="version-selector">
-        <label for="version">選擇安裝版本：</label>
+        <label for="version">選擇版本：</label>
         <select id="version" onchange="updateDownloadLink()">
             <option value="Package 43v4.mcpack">Version 4 (最新版本)</option>
             <option value="Package 43v3.mcpack">Version 3</option>
@@ -138,7 +138,7 @@
     </div>
 
     <a id="downloadLink" href="Package 43v4.mcpack" download class="download-btn">
-        立即安裝模組
+        安裝模組
     </a>
 
     <div class="info-tag" id="fileNameDisplay">
@@ -154,9 +154,6 @@
         
         const selectedFile = selector.value;
         
-        // 更新下載連結與顯示
-        link.href = selectedFile;
-        display.innerText = "檔案名稱: " + selectedFile;
     }
 </script>
 
