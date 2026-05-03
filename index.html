@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft 模組商店</title>
-	<link rel="icon" type="image/png" href="favicon_store.png">
+    <link rel="icon" type="image/png" href="favicon_store.png">
     <style>
         /* 基礎頁面設定 (深色主題) */
         body {
@@ -13,6 +13,9 @@
             color: #ffffff;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 確保內容不足時 footer 也能在底部 */
         }
 
         /* 頂部導航與搜尋欄 */
@@ -38,13 +41,14 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* 模組列表容器 */
+        /* 模組列表容器 - 這裡負責橫向排列 */
         .store-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: wrap; /* 自動換行 */
+            justify-content: center; /* 置中 */
             padding: 40px;
             gap: 25px;
+            flex: 1; /* 讓容器撐開空間 */
         }
 
         /* 單個模組卡片設計 */
@@ -67,13 +71,17 @@
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 20px;
-            background-color: #23272a; /* 圖片若遺失的替代背景色 */
+            background-color: #23272a; 
         }
         .mod-title {
             font-size: 1.4em;
             font-weight: bold;
             margin-bottom: 20px;
             color: #ffffff;
+            height: 3.2em; /* 統一高度防止文字長短影響對齊 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* 下載按鈕設計 */
@@ -90,6 +98,16 @@
         }
         .download-btn:hover {
             background-color: #3ca374;
+        }
+
+        /* 底部版權區域 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #23272a;
+            color: #72767d;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
         }
     </style>
 </head>
@@ -108,36 +126,33 @@
             <a href="https://packdev57.github.io/mcpack/more-title" target="_self" class="download-btn">下載</a>
         </div>
         
-        </div>
-	<div class="store-container" id="storeContainer">
-        
         <div class="mod-card">
             <img src="favicon_store.png" alt="null-模組圖示" class="mod-icon">
             <div class="mod-title">=Coming Soon=</div>
             <a href="https://packdev57.github.io/mcpack/" target="_self" class="download-btn">下載</a>
         </div>
-        
-	</div>
+
+    </div>
+
+    <footer>
+        ©2026 Package Develop All rights reserved 
+    </footer>
 
     <script>
         document.getElementById('searchBar').addEventListener('input', function(e) {
-            // 取得使用者輸入的文字，並轉成小寫以方便比對
             const searchTerm = e.target.value.toLowerCase();
-            // 取得所有的模組卡片
             const modCards = document.querySelectorAll('.mod-card');
 
-            // 檢查每張卡片的標題是否包含搜尋文字
             modCards.forEach(card => {
                 const title = card.querySelector('.mod-title').textContent.toLowerCase();
                 if (title.includes(searchTerm)) {
-                    card.style.display = 'block'; // 顯示符合的卡片
+                    card.style.display = 'block'; 
                 } else {
-                    card.style.display = 'none';  // 隱藏不符合的卡片
+                    card.style.display = 'none';  
                 }
             });
         });
     </script>
-	©2026 Package Develop All rights reserved 
+
 </body>
-  </html>
-  
+</html>
